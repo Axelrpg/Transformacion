@@ -31,10 +31,10 @@
             this.cartesianPlane = new System.Windows.Forms.PictureBox();
             this.btnPolygon = new System.Windows.Forms.Button();
             this.firstPoint = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFirstX = new System.Windows.Forms.TextBox();
             this.txtFirstY = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtFirstX = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.secondPoint = new System.Windows.Forms.GroupBox();
             this.txtSecondY = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,10 +45,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtThirdX = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnTranslation = new System.Windows.Forms.Button();
+            this.txtTranslationY = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTranslationX = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnScaled = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtScaled = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cartesianPlane)).BeginInit();
             this.firstPoint.SuspendLayout();
             this.secondPoint.SuspendLayout();
             this.thirdPoint.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cartesianPlane
@@ -84,26 +97,6 @@
             this.firstPoint.TabStop = false;
             this.firstPoint.Text = "Primer punto:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "X";
-            // 
-            // txtFirstX
-            // 
-            this.txtFirstX.Location = new System.Drawing.Point(28, 20);
-            this.txtFirstX.Name = "txtFirstX";
-            this.txtFirstX.Size = new System.Drawing.Size(50, 20);
-            this.txtFirstX.TabIndex = 1;
-            this.txtFirstX.Text = "0";
-            this.txtFirstX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtFirstX.TextChanged += new System.EventHandler(this.txtFirstX_TextChanged);
-            this.txtFirstX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstX_KeyPress);
-            // 
             // txtFirstY
             // 
             this.txtFirstY.Location = new System.Drawing.Point(106, 20);
@@ -112,7 +105,6 @@
             this.txtFirstY.TabIndex = 3;
             this.txtFirstY.Text = "0";
             this.txtFirstY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtFirstY.TextChanged += new System.EventHandler(this.txtFirstY_TextChanged);
             this.txtFirstY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstY_KeyPress);
             // 
             // label2
@@ -123,6 +115,25 @@
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Y";
+            // 
+            // txtFirstX
+            // 
+            this.txtFirstX.Location = new System.Drawing.Point(28, 20);
+            this.txtFirstX.Name = "txtFirstX";
+            this.txtFirstX.Size = new System.Drawing.Size(50, 20);
+            this.txtFirstX.TabIndex = 1;
+            this.txtFirstX.Text = "0";
+            this.txtFirstX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFirstX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstX_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "X";
             // 
             // secondPoint
             // 
@@ -145,7 +156,6 @@
             this.txtSecondY.TabIndex = 3;
             this.txtSecondY.Text = "0";
             this.txtSecondY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSecondY.TextChanged += new System.EventHandler(this.txtSecondY_TextChanged);
             this.txtSecondY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondY_KeyPress);
             // 
             // label3
@@ -165,7 +175,6 @@
             this.txtSecondX.TabIndex = 1;
             this.txtSecondX.Text = "0";
             this.txtSecondX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSecondX.TextChanged += new System.EventHandler(this.txtSecondX_TextChanged);
             this.txtSecondX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondX_KeyPress);
             // 
             // label4
@@ -198,7 +207,6 @@
             this.txtThirdY.TabIndex = 3;
             this.txtThirdY.Text = "0";
             this.txtThirdY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtThirdY.TextChanged += new System.EventHandler(this.txtThirdY_TextChanged);
             this.txtThirdY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtThirdY_KeyPress);
             // 
             // label5
@@ -218,7 +226,6 @@
             this.txtThirdX.TabIndex = 1;
             this.txtThirdX.Text = "0";
             this.txtThirdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtThirdX.TextChanged += new System.EventHandler(this.txtThirdX_TextChanged);
             this.txtThirdX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtThirdX_KeyPress);
             // 
             // label6
@@ -230,11 +237,128 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "X";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnTranslation);
+            this.groupBox1.Controls.Add(this.txtTranslationY);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtTranslationX);
+            this.groupBox1.Location = new System.Drawing.Point(637, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(162, 90);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Traslación";
+            // 
+            // btnTranslation
+            // 
+            this.btnTranslation.Enabled = false;
+            this.btnTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslation.Location = new System.Drawing.Point(9, 48);
+            this.btnTranslation.Name = "btnTranslation";
+            this.btnTranslation.Size = new System.Drawing.Size(144, 30);
+            this.btnTranslation.TabIndex = 6;
+            this.btnTranslation.Text = "Trasladar";
+            this.btnTranslation.UseVisualStyleBackColor = true;
+            this.btnTranslation.Click += new System.EventHandler(this.btnTranslation_Click);
+            // 
+            // txtTranslationY
+            // 
+            this.txtTranslationY.Location = new System.Drawing.Point(106, 20);
+            this.txtTranslationY.Name = "txtTranslationY";
+            this.txtTranslationY.Size = new System.Drawing.Size(50, 20);
+            this.txtTranslationY.TabIndex = 7;
+            this.txtTranslationY.Text = "0";
+            this.txtTranslationY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTranslationY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTranslationY_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(84, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Y";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(14, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "X";
+            // 
+            // txtTranslationX
+            // 
+            this.txtTranslationX.Location = new System.Drawing.Point(28, 20);
+            this.txtTranslationX.Name = "txtTranslationX";
+            this.txtTranslationX.Size = new System.Drawing.Size(50, 20);
+            this.txtTranslationX.TabIndex = 5;
+            this.txtTranslationX.Text = "0";
+            this.txtTranslationX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTranslationX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTranslationX_KeyPress);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnScaled);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.txtScaled);
+            this.groupBox2.Location = new System.Drawing.Point(637, 109);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(162, 90);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Escalado";
+            // 
+            // btnScaled
+            // 
+            this.btnScaled.Enabled = false;
+            this.btnScaled.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScaled.Location = new System.Drawing.Point(9, 48);
+            this.btnScaled.Name = "btnScaled";
+            this.btnScaled.Size = new System.Drawing.Size(144, 30);
+            this.btnScaled.TabIndex = 6;
+            this.btnScaled.Text = "Escalar";
+            this.btnScaled.UseVisualStyleBackColor = true;
+            this.btnScaled.Click += new System.EventHandler(this.btnScaled_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(84, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 13);
+            this.label9.TabIndex = 6;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 23);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Escala";
+            // 
+            // txtScaled
+            // 
+            this.txtScaled.Location = new System.Drawing.Point(51, 20);
+            this.txtScaled.Name = "txtScaled";
+            this.txtScaled.Size = new System.Drawing.Size(50, 20);
+            this.txtScaled.TabIndex = 5;
+            this.txtScaled.Text = "0";
+            this.txtScaled.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 474);
+            this.ClientSize = new System.Drawing.Size(807, 474);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.thirdPoint);
             this.Controls.Add(this.secondPoint);
             this.Controls.Add(this.firstPoint);
@@ -250,6 +374,10 @@
             this.secondPoint.PerformLayout();
             this.thirdPoint.ResumeLayout(false);
             this.thirdPoint.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -273,6 +401,17 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtThirdX;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnTranslation;
+        private System.Windows.Forms.TextBox txtTranslationY;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtTranslationX;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnScaled;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtScaled;
     }
 }
 

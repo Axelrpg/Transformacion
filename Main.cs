@@ -12,8 +12,121 @@ namespace Transformacion
         }
 
         private Graphics graphics;
+        private Pen penBlack = new Pen(Color.Black, 1);
+        private Pen penRed = new Pen(Color.Red, 1);
         private Point[] points;
         private int centerX, centerY;
+
+        private int firstX, firstY, secondX, secondY, thirdX, thirdY;
+
+        private void concealer()
+        {
+            notNull();
+
+            //Delete previous drawing
+            cartesianPlane.Refresh();
+        }
+
+        private void getPoints()
+        {
+            //Get points
+            firstX = txtFirstX.Text != "" ? Convert.ToInt32(txtFirstX.Text) : 0;
+            firstY = txtFirstY.Text != "" ? Convert.ToInt32(txtFirstY.Text) : 0;
+            secondX = txtSecondX.Text != "" ? Convert.ToInt32(txtSecondX.Text) : 0;
+            secondY = txtSecondY.Text != "" ? Convert.ToInt32(txtSecondY.Text) : 0;
+            thirdX = txtThirdX.Text != "" ? Convert.ToInt32(txtThirdX.Text) : 0;
+            thirdY = txtThirdY.Text != "" ? Convert.ToInt32(txtThirdY.Text) : 0;
+        }
+
+        private void draw()
+        {
+            points = new Point[]
+            {
+                new Point(firstX, firstY),
+                new Point(secondX, secondY),
+                new Point(thirdX, thirdY),
+            };
+
+            //For each point
+            for (int i = 0; i < points.Length; i++)
+            {
+                //Draw a circle
+                graphics.DrawEllipse(penRed, centerX + (points[i].X * 22) - 2, centerY - (points[i].Y * 22) - 2, 4, 4);
+
+                //Draw a line between points
+                if (i + 1 < points.Length)
+                {
+                    graphics.DrawLine(penRed, centerX + (points[i].X * 22), centerY - (points[i].Y * 22), centerX + (points[i + 1].X * 22), centerY - (points[i + 1].Y * 22));
+                }
+
+                //Draw a line between last and first point
+                if (i == points.Length - 1)
+                {
+                    graphics.DrawLine(penRed, centerX + (points[i].X * 22), centerY - (points[i].Y * 22), centerX + (points[0].X * 22), centerY - (points[0].Y * 22));
+                }
+            }
+
+            graphics.DrawPolygon(penRed, points);
+        }
+
+        private void btnPolygon_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+            draw();
+
+            btnScaled.Enabled = true;
+            btnTranslation.Enabled = true;
+        }
+
+        private void btnScaled_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+
+            int scaled = txtScaled.Text != "" ? Convert.ToInt32(txtScaled.Text) : 0;
+
+            firstX *= scaled;
+            firstY *= scaled;
+            secondX *= scaled;
+            secondY *= scaled;
+            thirdX *= scaled;
+            thirdY *= scaled;
+
+            txtFirstX.Text = firstX.ToString();
+            txtFirstY.Text = firstY.ToString();
+            txtSecondX.Text = secondX.ToString();
+            txtSecondY.Text = secondY.ToString();
+            txtThirdX.Text = thirdX.ToString();
+            txtThirdY.Text = thirdY.ToString();
+
+            draw();
+        }
+
+        private void btnTranslation_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+
+            int translationX = txtTranslationX.Text != "" ? Convert.ToInt32(txtTranslationX.Text) : 0;
+            int translationY = txtTranslationY.Text != "" ? Convert.ToInt32(txtTranslationY.Text) : 0;
+
+            firstX += translationX;
+            firstY += translationY;
+            secondX += translationX;
+            secondY += translationY;
+            thirdX += translationX;
+            thirdY += translationY;
+
+            txtFirstX.Text = firstX.ToString();
+            txtFirstY.Text = firstY.ToString();
+            txtSecondX.Text = secondX.ToString();
+            txtSecondY.Text = secondY.ToString();
+            txtThirdX.Text = thirdX.ToString();
+            txtThirdY.Text = thirdY.ToString();
+
+            draw();
+        }
 
         private void cartesianPlane_Paint(object sender, PaintEventArgs e)
         {
@@ -58,78 +171,47 @@ namespace Transformacion
             graphics = cartesianPlane.CreateGraphics();
         }
 
-        private void txtFirstX_KeyPress(object sender, KeyPressEventArgs e)
+        private void notNull()
         {
-            onlyNumbers(sender, e);
-        }
-
-        private void txtFirstY_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            onlyNumbers(sender, e);
-        }
-
-        private void btnPolygon_Click(object sender, EventArgs e)
-        {
-            //Delete previous drawing
-            cartesianPlane.Refresh();
-
-            //Get points
-            int firstX = txtFirstX.Text != "" ? Convert.ToInt32(txtFirstX.Text) : 0;
-            int firstY = txtFirstY.Text != "" ? Convert.ToInt32(txtFirstY.Text) : 0;
-            int secondX = txtSecondX.Text != "" ? Convert.ToInt32(txtSecondX.Text) : 0;
-            int secondY = txtSecondY.Text != "" ? Convert.ToInt32(txtSecondY.Text) : 0;
-            int thirdX = txtThirdX.Text != "" ? Convert.ToInt32(txtThirdX.Text) : 0;
-            int thirdY = txtThirdY.Text != "" ? Convert.ToInt32(txtThirdY.Text) : 0;
-
-            Pen pen = new Pen(Color.Red, 1);
-
-            points = new Point[]
+            if (txtFirstX.Text.Length == 0)
             {
-                new Point(firstX, firstY),
-                new Point(secondX, secondY),
-                new Point(thirdX, thirdY),
-            };
-
-            //For each point
-            for (int i = 0; i < points.Length; i++)
-            {
-                //Draw a circle
-                graphics.DrawEllipse(pen, centerX + (points[i].X * 22) - 2, centerY - (points[i].Y * 22) - 2, 4, 4);
-
-                //Draw a line between points
-                if (i + 1 < points.Length)
-                {
-                    graphics.DrawLine(pen, centerX + (points[i].X * 22), centerY - (points[i].Y * 22), centerX + (points[i + 1].X * 22), centerY - (points[i + 1].Y * 22));
-                }
-
-                //Draw a line between last and first point
-                if (i == points.Length - 1)
-                {
-                    graphics.DrawLine(pen, centerX + (points[i].X * 22), centerY - (points[i].Y * 22), centerX + (points[0].X * 22), centerY - (points[0].Y * 22));
-                }
+                txtFirstX.Text = "0";
             }
 
-            graphics.DrawPolygon(pen, points);
-        }
+            if (txtFirstY.Text.Length == 0)
+            {
+                txtFirstY.Text = "0";
+            }
 
-        private void txtSecondX_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            onlyNumbers(sender, e);
-        }
+            if (txtSecondX.Text.Length == 0)
+            {
+                txtSecondX.Text = "0";
+            }
 
-        private void txtSecondY_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            onlyNumbers(sender, e);
-        }
+            if (txtSecondY.Text.Length == 0)
+            {
+                txtSecondY.Text = "0";
+            }
 
-        private void txtThirdX_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            onlyNumbers(sender, e);
-        }
+            if (txtThirdX.Text.Length == 0)
+            {
+                txtThirdX.Text = "0";
+            }
 
-        private void txtThirdY_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            onlyNumbers(sender, e);
+            if (txtThirdY.Text.Length == 0)
+            {
+                txtThirdY.Text = "0";
+            }
+
+            if (txtTranslationX.Text.Length == 0)
+            {
+                txtTranslationX.Text = "0";
+            }
+
+            if (txtTranslationY.Text.Length == 0)
+            {
+                txtTranslationY.Text = "0";
+            }
         }
 
         private void onlyNumbers(object sender, KeyPressEventArgs e)
@@ -155,44 +237,44 @@ namespace Transformacion
             }
         }
 
-        private void txtFirstX_TextChanged(object sender, EventArgs e)
+        private void txtFirstX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void txtFirstY_TextChanged(object sender, EventArgs e)
+        private void txtFirstY_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void txtSecondX_TextChanged(object sender, EventArgs e)
+        private void txtSecondX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void txtSecondY_TextChanged(object sender, EventArgs e)
+        private void txtSecondY_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void txtThirdX_TextChanged(object sender, EventArgs e)
+        private void txtThirdX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void txtThirdY_TextChanged(object sender, EventArgs e)
+        private void txtThirdY_KeyPress(object sender, KeyPressEventArgs e)
         {
-            notNull(sender, e);
+            onlyNumbers(sender, e);
         }
 
-        private void notNull(object sender, EventArgs e)
+        private void txtTranslationX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
+            onlyNumbers(sender, e);
+        }
 
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "0"; // Establecer a 0 si está vacío
-            }
+        private void txtTranslationY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            onlyNumbers(sender, e);
         }
     }
 }
