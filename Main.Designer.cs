@@ -379,7 +379,7 @@
             this.groupBox3.Size = new System.Drawing.Size(162, 90);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Rotación";
+            this.groupBox3.Text = "Rotación antihorario";
             // 
             // btnRotation
             // 

@@ -201,7 +201,6 @@ namespace Transformacion
 
         private void cartesianPlane_Paint(object sender, PaintEventArgs e)
         {
-            Pen pen = new Pen(Color.Black, 1);
             Font font = new Font("Arial", 6);
             Brush brush = new SolidBrush(Color.Black);
 
@@ -211,8 +210,8 @@ namespace Transformacion
             centerY = cartesianPlane.Height / 2;
 
             // Draw cartesian plane
-            graphics.DrawLine(pen, 0, centerY, cartesianPlane.Width, centerY);
-            graphics.DrawLine(pen, centerX, 0, centerX, cartesianPlane.Height);
+            graphics.DrawLine(penBlack, 0, centerY, cartesianPlane.Width, centerY);
+            graphics.DrawLine(penBlack, centerX, 0, centerX, cartesianPlane.Height);
 
             // Draw X and Y axis
             for (int i = -10; i <= 10; i++)
@@ -234,8 +233,8 @@ namespace Transformacion
             {
                 if (i != 0)
                 {
-                    graphics.DrawLine(pen, centerX + (i * 22), centerY - 2, centerX + (i * 22), centerY + 2);
-                    graphics.DrawLine(pen, centerX - 2, centerY - (i * 22), centerX + 2, centerY - (i * 22));
+                    graphics.DrawLine(penBlack, centerX + (i * 22), centerY - 2, centerX + (i * 22), centerY + 2);
+                    graphics.DrawLine(penBlack, centerX - 2, centerY - (i * 22), centerX + 2, centerY - (i * 22));
                 }
             }
 
@@ -282,6 +281,26 @@ namespace Transformacion
             if (txtTranslationY.Text.Length == 0)
             {
                 txtTranslationY.Text = "0";
+            }
+
+            if (txtScaled.Text.Length == 0)
+            {
+                txtScaled.Text = "0";
+            }
+
+            if (txtRotation.Text.Length == 0)
+            {
+                txtRotation.Text = "0";
+            }
+
+            if (txtShearingX.Text.Length == 0)
+            {
+                txtShearingX.Text = "0";
+            }
+
+            if (txtShearingY.Text.Length == 0)
+            {
+                txtShearingY.Text = "0";
             }
         }
 
