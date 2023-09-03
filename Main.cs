@@ -69,6 +69,18 @@ namespace Transformacion
             graphics.DrawPolygon(penRed, points);
         }
 
+        private void endButton()
+        {
+            txtFirstX.Text = firstX.ToString();
+            txtFirstY.Text = firstY.ToString();
+            txtSecondX.Text = secondX.ToString();
+            txtSecondY.Text = secondY.ToString();
+            txtThirdX.Text = thirdX.ToString();
+            txtThirdY.Text = thirdY.ToString();
+
+            draw();
+        }
+
         private void btnPolygon_Click(object sender, EventArgs e)
         {
             concealer();
@@ -76,6 +88,9 @@ namespace Transformacion
             draw();
 
             btnScaled.Enabled = true;
+            btnShearingX.Enabled = true;
+            btnShearingY.Enabled = true;
+            btnRotation.Enabled = true;
             btnTranslation.Enabled = true;
         }
 
@@ -93,14 +108,77 @@ namespace Transformacion
             thirdX *= scaled;
             thirdY *= scaled;
 
-            txtFirstX.Text = firstX.ToString();
-            txtFirstY.Text = firstY.ToString();
-            txtSecondX.Text = secondX.ToString();
-            txtSecondY.Text = secondY.ToString();
-            txtThirdX.Text = thirdX.ToString();
-            txtThirdY.Text = thirdY.ToString();
+            endButton();
+        }
 
-            draw();
+        private void btnShearingX_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+
+            float shearing = txtShearingX.Text != "" ? Convert.ToSingle(txtShearingX.Text) : 0;
+
+            firstX = firstX + shearing * firstY;
+            secondX = secondX + shearing * secondY;
+            thirdX = thirdX + shearing * thirdY;
+
+            endButton();
+        }
+
+        private void btnShearingY_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+
+            float shearing = txtShearingY.Text != "" ? Convert.ToSingle(txtShearingY.Text) : 0;
+
+            firstY = firstY + shearing * firstX;
+            secondY = secondY + shearing * secondX;
+            thirdY = thirdY + shearing * thirdX;
+
+            endButton();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            concealer();
+
+            firstX = 0;
+            firstY = 0;
+            secondX = 0;
+            secondY = 3;
+            thirdX = 3;
+            thirdY = 0;
+
+            endButton();
+        }
+
+        private void btnRotation_Click(object sender, EventArgs e)
+        {
+            concealer();
+            getPoints();
+
+            float degrees = txtRotation.Text != "" ? Convert.ToSingle(txtRotation.Text) : 0;
+            double radians = (Math.PI * degrees / 180.0);
+
+            double cosTheta = Math.Cos(radians);
+            double sinTheta = Math.Sin(radians);
+
+            float backupFirstX = firstX;
+            float backupFirstY = firstY;
+            float backupSecondX = secondX;
+            float backupSecondY = secondY;
+            float backupThirdX = thirdX;
+            float backupThirdY = thirdY;
+
+            firstX = (float)(backupFirstX * cosTheta - backupFirstY * sinTheta);
+            firstY = (float)(backupFirstX * sinTheta + backupFirstY * cosTheta);
+            secondX = (float)(backupSecondX * cosTheta - backupSecondY * sinTheta);
+            secondY = (float)(backupSecondX * sinTheta + backupSecondY * cosTheta);
+            thirdX = (float)(backupThirdX * cosTheta - backupThirdY * sinTheta);
+            thirdY = (float)(backupThirdX * sinTheta + backupThirdY * cosTheta);
+
+            endButton();
         }
 
         private void btnTranslation_Click(object sender, EventArgs e)
@@ -118,14 +196,7 @@ namespace Transformacion
             thirdX += translationX;
             thirdY += translationY;
 
-            txtFirstX.Text = firstX.ToString();
-            txtFirstY.Text = firstY.ToString();
-            txtSecondX.Text = secondX.ToString();
-            txtSecondY.Text = secondY.ToString();
-            txtThirdX.Text = thirdX.ToString();
-            txtThirdY.Text = thirdY.ToString();
-
-            draw();
+            endButton();
         }
 
         private void cartesianPlane_Paint(object sender, PaintEventArgs e)
