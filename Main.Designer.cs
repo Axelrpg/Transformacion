@@ -364,6 +364,7 @@
             this.Controls.Add(this.firstPoint);
             this.Controls.Add(this.btnPolygon);
             this.Controls.Add(this.cartesianPlane);
+            this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transformaciones";

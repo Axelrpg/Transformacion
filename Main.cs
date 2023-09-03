@@ -14,10 +14,10 @@ namespace Transformacion
         private Graphics graphics;
         private Pen penBlack = new Pen(Color.Black, 1);
         private Pen penRed = new Pen(Color.Red, 1);
-        private Point[] points;
+        private PointF[] points;
         private int centerX, centerY;
 
-        private int firstX, firstY, secondX, secondY, thirdX, thirdY;
+        private float firstX, firstY, secondX, secondY, thirdX, thirdY;
 
         private void concealer()
         {
@@ -30,21 +30,21 @@ namespace Transformacion
         private void getPoints()
         {
             //Get points
-            firstX = txtFirstX.Text != "" ? Convert.ToInt32(txtFirstX.Text) : 0;
-            firstY = txtFirstY.Text != "" ? Convert.ToInt32(txtFirstY.Text) : 0;
-            secondX = txtSecondX.Text != "" ? Convert.ToInt32(txtSecondX.Text) : 0;
-            secondY = txtSecondY.Text != "" ? Convert.ToInt32(txtSecondY.Text) : 0;
-            thirdX = txtThirdX.Text != "" ? Convert.ToInt32(txtThirdX.Text) : 0;
-            thirdY = txtThirdY.Text != "" ? Convert.ToInt32(txtThirdY.Text) : 0;
+            firstX = txtFirstX.Text != "" ? Convert.ToSingle(txtFirstX.Text) : 0;
+            firstY = txtFirstY.Text != "" ? Convert.ToSingle(txtFirstY.Text) : 0;
+            secondX = txtSecondX.Text != "" ? Convert.ToSingle(txtSecondX.Text) : 0;
+            secondY = txtSecondY.Text != "" ? Convert.ToSingle(txtSecondY.Text) : 0;
+            thirdX = txtThirdX.Text != "" ? Convert.ToSingle(txtThirdX.Text) : 0;
+            thirdY = txtThirdY.Text != "" ? Convert.ToSingle(txtThirdY.Text) : 0;
         }
 
         private void draw()
         {
-            points = new Point[]
+            points = new PointF[]
             {
-                new Point(firstX, firstY),
-                new Point(secondX, secondY),
-                new Point(thirdX, thirdY),
+                new PointF(firstX, firstY),
+                new PointF(secondX, secondY),
+                new PointF(thirdX, thirdY),
             };
 
             //For each point
@@ -84,7 +84,7 @@ namespace Transformacion
             concealer();
             getPoints();
 
-            int scaled = txtScaled.Text != "" ? Convert.ToInt32(txtScaled.Text) : 0;
+            float scaled = txtScaled.Text != "" ? Convert.ToSingle(txtScaled.Text) : 0;
 
             firstX *= scaled;
             firstY *= scaled;
@@ -108,8 +108,8 @@ namespace Transformacion
             concealer();
             getPoints();
 
-            int translationX = txtTranslationX.Text != "" ? Convert.ToInt32(txtTranslationX.Text) : 0;
-            int translationY = txtTranslationY.Text != "" ? Convert.ToInt32(txtTranslationY.Text) : 0;
+            float translationX = txtTranslationX.Text != "" ? Convert.ToSingle(txtTranslationX.Text) : 0;
+            float translationY = txtTranslationY.Text != "" ? Convert.ToSingle(txtTranslationY.Text) : 0;
 
             firstX += translationX;
             firstY += translationY;
@@ -218,11 +218,19 @@ namespace Transformacion
         {
             TextBox textBox = sender as TextBox;
 
-            // Si la tecla presionada es un número o una tecla de control
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            // Si la tecla presionada es un número, un punto o una tecla de control
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || char.IsControl(e.KeyChar))
             {
-                // Permitir números y teclas de control
-                e.Handled = false;
+                // Permitir números, punto y teclas de control
+                // Pero asegurarse de que no haya más de un punto
+                if (e.KeyChar == '.' && textBox.Text.Contains("."))
+                {
+                    e.Handled = true; // Suprimir el segundo punto
+                }
+                else
+                {
+                    e.Handled = false;
+                }
             }
             // Si la tecla presionada es el signo de menos y está al principio
             else if (e.KeyChar == '-' && textBox.SelectionStart == 0 && !textBox.Text.Contains("-"))
