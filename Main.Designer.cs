@@ -62,14 +62,15 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtRotation = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnShearingY = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtShearingY = new System.Windows.Forms.TextBox();
             this.btnShearingX = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtShearingX = new System.Windows.Forms.TextBox();
-            this.btnShearingY = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtShearingY = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnClean = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cartesianPlane)).BeginInit();
             this.firstPoint.SuspendLayout();
             this.secondPoint.SuspendLayout();
@@ -367,6 +368,7 @@
             this.txtScaled.TabIndex = 5;
             this.txtScaled.Text = "0";
             this.txtScaled.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtScaled.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScaled_KeyPress);
             // 
             // groupBox3
             // 
@@ -418,6 +420,7 @@
             this.txtRotation.TabIndex = 5;
             this.txtRotation.Text = "0";
             this.txtRotation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtRotation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRotation_KeyPress);
             // 
             // groupBox4
             // 
@@ -434,6 +437,37 @@
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Sesgado";
+            // 
+            // btnShearingY
+            // 
+            this.btnShearingY.Enabled = false;
+            this.btnShearingY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShearingY.Location = new System.Drawing.Point(9, 114);
+            this.btnShearingY.Name = "btnShearingY";
+            this.btnShearingY.Size = new System.Drawing.Size(144, 30);
+            this.btnShearingY.TabIndex = 9;
+            this.btnShearingY.Text = "Cizallar en Y";
+            this.btnShearingY.UseVisualStyleBackColor = true;
+            this.btnShearingY.Click += new System.EventHandler(this.btnShearingY_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 89);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 13);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Y";
+            // 
+            // txtShearingY
+            // 
+            this.txtShearingY.Location = new System.Drawing.Point(26, 86);
+            this.txtShearingY.Name = "txtShearingY";
+            this.txtShearingY.Size = new System.Drawing.Size(50, 20);
+            this.txtShearingY.TabIndex = 8;
+            this.txtShearingY.Text = "0";
+            this.txtShearingY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtShearingY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShearingY_KeyPress);
             // 
             // btnShearingX
             // 
@@ -472,36 +506,7 @@
             this.txtShearingX.TabIndex = 5;
             this.txtShearingX.Text = "0";
             this.txtShearingX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnShearingY
-            // 
-            this.btnShearingY.Enabled = false;
-            this.btnShearingY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShearingY.Location = new System.Drawing.Point(9, 114);
-            this.btnShearingY.Name = "btnShearingY";
-            this.btnShearingY.Size = new System.Drawing.Size(144, 30);
-            this.btnShearingY.TabIndex = 9;
-            this.btnShearingY.Text = "Cizallar en Y";
-            this.btnShearingY.UseVisualStyleBackColor = true;
-            this.btnShearingY.Click += new System.EventHandler(this.btnShearingY_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 89);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(14, 13);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Y";
-            // 
-            // txtShearingY
-            // 
-            this.txtShearingY.Location = new System.Drawing.Point(26, 86);
-            this.txtShearingY.Name = "txtShearingY";
-            this.txtShearingY.Size = new System.Drawing.Size(50, 20);
-            this.txtShearingY.TabIndex = 8;
-            this.txtShearingY.Text = "0";
-            this.txtShearingY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtShearingX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShearingX_KeyPress);
             // 
             // btnReset
             // 
@@ -514,11 +519,23 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // btnClean
+            // 
+            this.btnClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClean.Location = new System.Drawing.Point(12, 395);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Size = new System.Drawing.Size(162, 31);
+            this.btnClean.TabIndex = 12;
+            this.btnClean.Text = "Limpiar";
+            this.btnClean.UseVisualStyleBackColor = true;
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 474);
+            this.Controls.Add(this.btnClean);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -596,6 +613,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtShearingX;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnClean;
     }
 }
 

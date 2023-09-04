@@ -27,17 +27,6 @@ namespace Transformacion
             cartesianPlane.Refresh();
         }
 
-        private void getPoints()
-        {
-            //Get points
-            firstX = txtFirstX.Text != "" ? Convert.ToSingle(txtFirstX.Text) : 0;
-            firstY = txtFirstY.Text != "" ? Convert.ToSingle(txtFirstY.Text) : 0;
-            secondX = txtSecondX.Text != "" ? Convert.ToSingle(txtSecondX.Text) : 0;
-            secondY = txtSecondY.Text != "" ? Convert.ToSingle(txtSecondY.Text) : 0;
-            thirdX = txtThirdX.Text != "" ? Convert.ToSingle(txtThirdX.Text) : 0;
-            thirdY = txtThirdY.Text != "" ? Convert.ToSingle(txtThirdY.Text) : 0;
-        }
-
         private void draw()
         {
             points = new PointF[]
@@ -78,6 +67,37 @@ namespace Transformacion
             txtThirdX.Text = thirdX.ToString();
             txtThirdY.Text = thirdY.ToString();
 
+            draw();
+        }
+
+        private void getPoints()
+        {
+            //Get points
+            firstX = txtFirstX.Text != "" ? Convert.ToSingle(txtFirstX.Text) : 0;
+            firstY = txtFirstY.Text != "" ? Convert.ToSingle(txtFirstY.Text) : 0;
+            secondX = txtSecondX.Text != "" ? Convert.ToSingle(txtSecondX.Text) : 0;
+            secondY = txtSecondY.Text != "" ? Convert.ToSingle(txtSecondY.Text) : 0;
+            thirdX = txtThirdX.Text != "" ? Convert.ToSingle(txtThirdX.Text) : 0;
+            thirdY = txtThirdY.Text != "" ? Convert.ToSingle(txtThirdY.Text) : 0;
+        }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            txtFirstX.Text = "0";
+            txtFirstY.Text = "0";
+            txtSecondX.Text = "0";
+            txtSecondY.Text = "0";
+            txtThirdX.Text = "0";
+            txtThirdY.Text = "0";
+            txtTranslationX.Text = "0";
+            txtTranslationY.Text = "0";
+            txtScaled.Text = "0";
+            txtRotation.Text = "0";
+            txtShearingX.Text = "0";
+            txtShearingY.Text = "0";
+
+            concealer();
+            getPoints();
             draw();
         }
 
@@ -345,12 +365,32 @@ namespace Transformacion
             onlyNumbers(sender, e);
         }
 
+        private void txtRotation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            onlyNumbers(sender, e);
+        }
+
+        private void txtScaled_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            onlyNumbers(sender, e);
+        }
+
         private void txtSecondX_KeyPress(object sender, KeyPressEventArgs e)
         {
             onlyNumbers(sender, e);
         }
 
         private void txtSecondY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            onlyNumbers(sender, e);
+        }
+
+        private void txtShearingX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            onlyNumbers(sender, e);
+        }
+
+        private void txtShearingY_KeyPress(object sender, KeyPressEventArgs e)
         {
             onlyNumbers(sender, e);
         }
